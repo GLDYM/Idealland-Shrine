@@ -1,0 +1,98 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.78'
+}
+
+version = "${mod_version}"
+group = "${mod_group_id}"
+base {
+    archivesName = "${mod_name}"
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
+
+neoForge {
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+
+    runs {
+        client {
+            client()
+        }
+        server {
+            server()
+        }
+        data {
+            data()
+            programArguments.addAll '--mod', "${mod_id}", '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://maven.neoforged.net/releases' }
+    maven { url = 'https://maven.parchmentmc.org' }
+}
+
+dependencies {
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+            minecraft_version_range: minecraft_version_range,
+            neo_version_range      : neo_version_range,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_description        : mod_description,
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/neoforge.mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            groupId project.group
+            artifactId base.archivesName.get()
+            version project.version
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}

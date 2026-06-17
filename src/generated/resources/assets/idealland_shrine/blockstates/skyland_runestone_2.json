@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "idealland_shrine:block/skyland_runestone_2",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "idealland_shrine:block/skyland_runestone_2"
+    },
+    "facing=south": {
+      "model": "idealland_shrine:block/skyland_runestone_2",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "idealland_shrine:block/skyland_runestone_2",
+      "y": 270
+    }
+  }
+}

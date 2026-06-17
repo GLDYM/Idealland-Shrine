@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "idealland_shrine:block/skyland_runestone_10"
+  }
+}
