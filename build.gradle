@@ -54,9 +54,32 @@ repositories {
     mavenCentral()
     maven { url = 'https://maven.neoforged.net/releases' }
     maven { url = 'https://maven.parchmentmc.org' }
+    maven {
+        url = "https://maven.latvian.dev/releases"
+        content {
+            includeGroup "dev.latvian.mods"
+            includeGroup "dev.latvian.apps"
+        }
+    }
+    maven {
+        url = "https://jitpack.io"
+        content {
+            includeGroup "com.github.rtyley"
+        }
+    }
+}
+
+configurations {
+    localRuntime
+    runtimeClasspath.extendsFrom localRuntime
 }
 
 dependencies {
+    compileOnlyApi("dev.latvian.mods:kubejs-neoforge:${project.kubejs_version}")
+    compileOnly("dev.latvian.mods:rhino:${project.rhino_version}")
+
+    localRuntime("dev.latvian.mods:kubejs-neoforge:${project.kubejs_version}")
+    localRuntime("dev.latvian.mods:rhino:${project.rhino_version}")
 }
 
 tasks.named('processResources', ProcessResources).configure {

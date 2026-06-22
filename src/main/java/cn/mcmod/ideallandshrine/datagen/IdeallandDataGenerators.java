@@ -18,6 +18,7 @@ public final class IdeallandDataGenerators {
         var lookupProvider = event.getLookupProvider();
 
         generator.addProvider(event.includeClient(), new IdeallandBlockStateProvider(output, existingFileHelper));
+        generator.addProvider(event.includeClient(), new IdeallandItemModelProvider(output, existingFileHelper));
         generator.addProvider(event.includeServer(), new IdeallandBlockTagsProvider(output, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new IdeallandLootTableProvider(output, lookupProvider));
     }

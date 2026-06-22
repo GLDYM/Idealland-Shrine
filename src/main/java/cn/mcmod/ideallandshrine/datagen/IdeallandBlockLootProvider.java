@@ -18,6 +18,7 @@ public class IdeallandBlockLootProvider extends BlockLootSubProvider {
         dropSelf(BlockRegistry.SKYLAND_DULL_RUNESTONE.get());
         dropSelf(BlockRegistry.SKYLAND_OOW_RUNESTONE.get());
         dropSelf(BlockRegistry.SKYLAND_FALL_RUNESTONE.get());
+        dropSelf(BlockRegistry.TELEPORTER_DIM_C16.get());
         BlockRegistry.GOD_RUNESTONES.forEach(deferredBlock -> dropSelf(deferredBlock.get()));
     }
 

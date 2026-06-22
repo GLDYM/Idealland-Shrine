@@ -93,13 +93,13 @@ public enum GodShrineType {
             return;
         }
 
-        if (this == STONE) {
-            placeTaggedColumn(serverLevel, pos, BlockTags.BASE_STONE_OVERWORLD);
-        }
+        // if (this == STONE) {
+        //     placeTaggedColumn(serverLevel, pos, BlockTags.BASE_STONE_OVERWORLD);
+        // }
         if (this == WOOD) {
             placeTaggedColumn(serverLevel, pos, BlockTags.LOGS);
         }
-        if (this == GOLD) {
+        if (this == STONE) {
             placeTaggedColumn(serverLevel, pos, Tags.Blocks.ORES);
         }
         if (this == EARTH) {

@@ -11,8 +11,8 @@ import net.minecraft.resources.ResourceLocation;
 public class CatharVexRenderer extends MobRenderer<CatharVexEntity, HumanoidModel<CatharVexEntity>> {
     private static final ResourceLocation NORMAL = ResourceLocation.fromNamespaceAndPath(IdeallandShrine.MODID,
             "textures/entity/cathar_vex.png");
-    private static final ResourceLocation CHARGING = ResourceLocation.fromNamespaceAndPath(IdeallandShrine.MODID,
-            "textures/entity/cathar_vex_charging.png");
+    // private static final ResourceLocation CHARGING = ResourceLocation.fromNamespaceAndPath(IdeallandShrine.MODID,
+    //         "textures/entity/cathar_vex_charging.png");
 
     public CatharVexRenderer(EntityRendererProvider.Context context) {
         super(context, new HumanoidModel<>(context.bakeLayer(net.minecraft.client.model.geom.ModelLayers.PLAYER)),
@@ -27,6 +27,7 @@ public class CatharVexRenderer extends MobRenderer<CatharVexEntity, HumanoidMode
 
     @Override
     public ResourceLocation getTextureLocation(CatharVexEntity entity) {
-        return entity.isCharging() ? CHARGING : NORMAL;
+        // return entity.isCharging() ? CHARGING : NORMAL;
+        return NORMAL;
     }
 }

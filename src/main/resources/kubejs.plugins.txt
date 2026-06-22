@@ -1,0 +1,1 @@
+cn.mcmod.ideallandshrine.api.kubejs.IdeallandShrinePlugin

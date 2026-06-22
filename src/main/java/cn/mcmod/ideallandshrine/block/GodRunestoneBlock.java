@@ -1,5 +1,7 @@
 package cn.mcmod.ideallandshrine.block;
 
+import cn.mcmod.ideallandshrine.api.event.PrayShrineEvent;
+import cn.mcmod.ideallandshrine.api.kubejs.ShrineEventPoster;
 import cn.mcmod.ideallandshrine.data.GodShrineType;
 import cn.mcmod.ideallandshrine.data.GodBeliefAccess;
 import cn.mcmod.ideallandshrine.entity.CatharVexEntity;
@@ -8,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -22,6 +25,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.NeoForge;
 
 public class GodRunestoneBlock extends ShrineBaseBlock {
     private static final int BONUS_GUARDIAN_LIFETIME = 20 * 60 * 20;
@@ -48,10 +52,16 @@ public class GodRunestoneBlock extends ShrineBaseBlock {
         if (!level.isClientSide) {
             Component shrineName = Component.translatable("block.idealland_shrine." + type.blockName());
             if (GodBeliefAccess.canPrayToday(player, type)) {
+                int previousBelief = GodBeliefAccess.getBelief(player, type);
                 int gainedBelief = 5 + level.getRandom().nextInt(11);
                 GodBeliefAccess.addBelief(player, type, gainedBelief);
                 GodBeliefAccess.markPrayedToday(player, type);
                 int currentBelief = GodBeliefAccess.getBelief(player, type);
+                if (player instanceof ServerPlayer serverPlayer) {
+                    PrayShrineEvent event = new PrayShrineEvent(serverPlayer, type, previousBelief, currentBelief);
+                    NeoForge.EVENT_BUS.post(event);
+                    ShrineEventPoster.INSTANCE.post(event);
+                }
                 player.displayClientMessage(
                         Component.translatable("message.idealland_shrine.pray_success", shrineName, currentBelief),
                         true);

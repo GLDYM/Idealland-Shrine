@@ -5,10 +5,12 @@ import cn.mcmod.ideallandshrine.block.FallProtectRunestoneBlock;
 import cn.mcmod.ideallandshrine.block.GodRunestoneBlock;
 import cn.mcmod.ideallandshrine.block.OutOfWorldRunestoneBlock;
 import cn.mcmod.ideallandshrine.block.ShrineBaseBlock;
+import cn.mcmod.ideallandshrine.block.TeleporterDimC16Block;
 import cn.mcmod.ideallandshrine.data.GodShrineType;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -24,6 +26,8 @@ public final class BlockRegistry {
             () -> new OutOfWorldRunestoneBlock(baseProperties().lightLevel(state -> 15)));
     public static final DeferredBlock<Block> SKYLAND_FALL_RUNESTONE = BLOCKS.register("skyland_fall_runestone",
             () -> new FallProtectRunestoneBlock(baseProperties().lightLevel(state -> 15)));
+    public static final DeferredBlock<Block> TELEPORTER_DIM_C16 = BLOCKS.register("teleporter_dim_c16",
+            () -> new TeleporterDimC16Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).lightLevel(state -> 15)));
 
     public static final List<DeferredBlock<? extends Block>> GOD_RUNESTONES = new ArrayList<>();
 

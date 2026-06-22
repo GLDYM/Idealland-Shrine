@@ -19,6 +19,8 @@ public final class BlockItemRegistry {
             () -> new BlockItem(BlockRegistry.SKYLAND_OOW_RUNESTONE.get(), IdeallandShrine.defaultItemProperties()));
     public static final DeferredItem<Item> SKYLAND_FALL_RUNESTONE = ITEMS.register("skyland_fall_runestone",
             () -> new BlockItem(BlockRegistry.SKYLAND_FALL_RUNESTONE.get(), IdeallandShrine.defaultItemProperties()));
+    public static final DeferredItem<Item> TELEPORTER_DIM_C16 = ITEMS.register("teleporter_dim_c16",
+            () -> new BlockItem(BlockRegistry.TELEPORTER_DIM_C16.get(), IdeallandShrine.defaultItemProperties()));
 
     public static final List<DeferredItem<? extends Item>> GOD_RUNESTONES = new ArrayList<>();
 

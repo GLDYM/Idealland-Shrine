@@ -2,6 +2,7 @@ package cn.mcmod.ideallandshrine.datagen;
 
 import cn.mcmod.ideallandshrine.IdeallandShrine;
 import cn.mcmod.ideallandshrine.init.block.BlockRegistry;
+import dev.latvian.mods.kubejs.server.tag.TagEventFilter.ID;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -20,6 +21,7 @@ public class IdeallandBlockStateProvider extends BlockStateProvider {
         registerCubeAll(BlockRegistry.SKYLAND_DULL_RUNESTONE.get());
         registerCubeAll(BlockRegistry.SKYLAND_OOW_RUNESTONE.get());
         registerCubeAll(BlockRegistry.SKYLAND_FALL_RUNESTONE.get());
+        simpleBlockWithItem(BlockRegistry.TELEPORTER_DIM_C16.get(), models().getExistingFile(ResourceLocation.fromNamespaceAndPath(IdeallandShrine.MODID, "block/teleporter_dim_c16")));
         BlockRegistry.GOD_RUNESTONES.forEach(deferredBlock -> registerHorizontalFacingCube(deferredBlock.get()));
     }
 

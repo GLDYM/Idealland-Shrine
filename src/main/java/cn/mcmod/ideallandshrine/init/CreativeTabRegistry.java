@@ -2,6 +2,7 @@ package cn.mcmod.ideallandshrine.init;
 
 import cn.mcmod.ideallandshrine.IdeallandShrine;
 import cn.mcmod.ideallandshrine.init.item.BlockItemRegistry;
+import cn.mcmod.ideallandshrine.init.item.ItemRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -20,7 +21,9 @@ public final class CreativeTabRegistry {
                         output.accept(BlockItemRegistry.SKYLAND_DULL_RUNESTONE.get());
                         output.accept(BlockItemRegistry.SKYLAND_OOW_RUNESTONE.get());
                         output.accept(BlockItemRegistry.SKYLAND_FALL_RUNESTONE.get());
+                        output.accept(BlockItemRegistry.TELEPORTER_DIM_C16.get());
                         BlockItemRegistry.GOD_RUNESTONES.forEach(holder -> output.accept(holder.get()));
+                        ItemRegistry.BASIC_RUNES.forEach(holder -> output.accept(holder.get()));
                     })
                     .build());
 
