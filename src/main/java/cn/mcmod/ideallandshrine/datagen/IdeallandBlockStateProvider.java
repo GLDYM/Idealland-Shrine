@@ -2,7 +2,6 @@ package cn.mcmod.ideallandshrine.datagen;
 
 import cn.mcmod.ideallandshrine.IdeallandShrine;
 import cn.mcmod.ideallandshrine.init.block.BlockRegistry;
-import dev.latvian.mods.kubejs.server.tag.TagEventFilter.ID;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
