@@ -108,8 +108,7 @@ public class CatharVexEntity extends Monster {
         this.noPhysics = false;
         this.setNoGravity(true);
         if (!this.level().isClientSide && --limitedLifeTicks <= 0) {
-            this.hurt(this.damageSources().starve(), 1.0F);
-            this.limitedLifeTicks = 20;
+            this.kill();
         }
     }
 
